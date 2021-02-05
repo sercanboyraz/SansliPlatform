@@ -48,7 +48,7 @@ namespace SansliPlatform.POSPrinter
 
         public static void Finish(this BinaryWriter bw)
         {
-            bw.NormalFont("---  Thank You, Come Again ---");
+            //bw.NormalFont("---  Thank You, Come Again ---");
             bw.FeedLines(1);
             bw.FeedLines(1);
             bw.FeedLines(1);

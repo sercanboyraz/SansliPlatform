@@ -80,27 +80,38 @@ namespace SansliPlatform.POSPrinter
                 // Reset the printer bws (NV images are not cleared)
                 bw.Write(AsciiControlChars.Escape);
                 bw.Write('@');
-                PrintReceipt(bw);
+                bw.Write('@');
+                PrintReceipt(bw, ticketNo, "10,00", "573983-987983745-345456");
                 bw.Write("&%PC");
                 bw.Flush();
                 return ms.ToArray();
             }
         }
 
-        private static void PrintReceipt(BinaryWriter bw)
+        private static void PrintReceipt(BinaryWriter bw, string ticketNo, string price, string guid)
         {
-            bw.LargeText("     Sadisa");
-            bw.LargeText("  Enterprises");
-            bw.NormalFont("  M:071-2628126 T:045-2271300 ");
-            bw.NormalFont("-----------------------------");
-            //bw.NormalFont("Invoice #: ");
-            bw.NormalFont("Hour: ");
-            bw.NormalFont("Minute: ");
-            bw.NormalFont("Date: ");
-            bw.NormalFont("Customer: ");
-            bw.NormalFont("Itm     Qty     Price    Tot");
-            bw.NormalFont("-----------------------------");
-            bw.Finish();
+            var date = DateTime.Now;
+
+            bw.FeedLines(1);
+            bw.NormalFont("           MİLLİ PİYANGO İDARESİ");
+            bw.NormalFont("                EŞYA ÇEKİLİŞİ");
+            bw.NormalFont(" ===========================================");
+            bw.NormalFont("                     " + ticketNo);
+            bw.NormalFont(" ===========================================");
+            bw.NormalFont("          Çekiliş Tarihi: 19.02.2021");
+            bw.FeedLines(1);
+            bw.NormalFont(" Oyun Tarihi                     Oyun Saati");
+            bw.NormalFont(" " + date.ToShortDateString() + "                          " + date.Hour + ":" + date.Minute.ToString("#0"));
+            bw.FeedLines(1);
+            bw.NormalFont(" TOPLAM                            " + price + " ₺");
+            bw.NormalFont(" 017701                        BAYİ 107890");
+            bw.NormalFont("           " + guid);
+            bw.NormalFont(" --------------------------------------------");
+            bw.FeedLines(3);
+            bw.FeedLines(1);
+            bw.FeedLines(1);
+            bw.FeedLines(1);
+
         }
     }
 
