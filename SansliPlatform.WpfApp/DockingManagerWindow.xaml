@@ -1,0 +1,58 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        x:Class="SansliPlatform.WpfApp.DockingManagerWindow" 
+        xmlns:self="clr-namespace:SansliPlatform.WpfApp"  
+        xmlns:local="clr-namespace:SansliPlatform.WpfApp" 
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized" 
+        Style="{StaticResource windowStyle}"
+        Icon="App.ico" 
+        x:Name="dockingmanagerwindow" 
+        Title="Docking Manager" >
+
+    <!--Defining Root Grid -->
+    <Grid>
+        <syncfusion:DockingManager x:Name="DockingManager" PersistState="False" LayoutUpdated="DockingManager_LayoutUpdated"
+                                   UseInteropCompatibilityMode="False" UseDocumentContainer="True" CloseTabs="CloseAll"
+                                  DisabledCloseButtonsBehavior="Disable" MinimizeButtonEnabled="False" RestrictWindowMinimumSize="False" IsVS2010DraggingEnabled="True"
+                                  EnableMouseHoverBackground="False"
+                                   WindowMoving="DockingManager_WindowMoving"
+                                   IsSelectedDocument="DockingManager_IsSelectedDocument"
+                                   IsAnimationEnabledOnMouseOver="{Binding ElementName=AutoHide,Path=IsChecked}"
+                                   EnableSnappingFloatWindow="{Binding ElementName=SnapFloat,Path=IsChecked}">
+            <!-- Dock window icon -->
+            <syncfusion:DockingManager.Icon>
+                <ImageBrush ImageSource="Images\icon.PNG"/>
+            </syncfusion:DockingManager.Icon>
+
+            <ContentControl Name="Integration"
+					  syncfusion:DockingManager.Header="Integration" 
+					  syncfusion:DockingManager.State="Document" 
+					  syncfusion:DockingManager.CanDock="False"
+					  syncfusion:DockingManager.CanFloat="False"
+                      syncfusion:DocumentContainer.MDIBounds="0,0,300,300"
+                      Content="{StaticResource ContainerDocument}" >
+            </ContentControl>
+            
+            <ContentControl Name="Features"
+					  syncfusion:DockingManager.Header="Features" 
+					  syncfusion:DockingManager.State="Document" 
+					  syncfusion:DockingManager.CanDock="False"
+                      syncfusion:DocumentContainer.MDIBounds="30,30,300,300"
+					  syncfusion:DockingManager.CanFloat="False"
+                      Content="{StaticResource DockingManagerFeatures}" >
+            </ContentControl>
+            
+            <ContentControl Name="Docking"
+					  syncfusion:DockingManager.Header="Docking" 
+					  syncfusion:DockingManager.State="Document" 
+					  syncfusion:DockingManager.CanDock="False"
+                      syncfusion:DocumentContainer.MDIBounds="60,60,300,300"
+					  syncfusion:DockingManager.CanFloat="False"
+                      Content="{StaticResource DockingDocument}" >
+            </ContentControl>
+        </syncfusion:DockingManager>
+    </Grid>
+</Window>
+
