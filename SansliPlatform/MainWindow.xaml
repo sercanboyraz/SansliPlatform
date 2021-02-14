@@ -1,30 +1,39 @@
 ﻿<mah:MetroWindow x:Class="SansliPlatform.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:userContrl="clr-namespace:SansliPlatform.UserControls"
-        xmlns:local="clr-namespace:SansliPlatform"     
-                 GlowBrush="{DynamicResource AccentColorBrush}"
-
-                      WindowStartupLocation="CenterScreen"
-                 ShowTitleBar="False"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:userControl="clr-namespace:SansliPlatform.UserControls"
+                 xmlns:local="clr-namespace:SansliPlatform"                  
+                 UseNoneWindowStyle="True" WindowState="Maximized"
+                 IsMaxRestoreButtonEnabled="False" 
+                 IsCloseButtonEnabled="False" IsMinButtonEnabled="False"
+                 WindowStartupLocation="CenterScreen" ShowTitleBar="False" 
+                 ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False"
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        mc:Ignorable="d" Title="MainWindow" Width="800" Height="600" >
+                 mc:Ignorable="d" Title="MainWindow" Width="800" Height="600" >
     
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <mah:MetroTabControl SelectionChanged="MetroTabControl_SelectionChanged">
 
-            <TabItem  Header="UserControl 1" Padding="5" BorderThickness="0,10,0,0">
-                <userContrl:MasterControl ></userContrl:MasterControl>
+        <Grid.Background>
+            <ImageBrush ImageSource="Image/main.png" />
+        </Grid.Background>
+        <mah:MetroTabControl SelectionChanged="MetroTabControl_SelectionChanged" Background="Transparent">
+
+            <TabItem x:Name="login" Header="Giriş" Padding="5" BorderThickness="0,10,0,0">
+                <userControl:LoginControl ></userControl:LoginControl>
+            </TabItem>
+            
+            <TabItem x:Name="game" Header="Oyunlar" Padding="5" BorderThickness="0,10,0,0" Visibility="Collapsed">
+                <userControl:MasterControl ></userControl:MasterControl>
             </TabItem>
 
-            <TabItem Header="UserControl 2" Padding="5" BorderThickness="0,0,0,0">
-                <userContrl:DealerControl ></userContrl:DealerControl>
+            <TabItem x:Name="bayii" Header="Bayi" Padding="5" BorderThickness="0,0,0,0" Visibility="Collapsed">
+                <userControl:DealerControl ></userControl:DealerControl>
             </TabItem>
 
-            <TabItem Header="UserControl 3" Padding="5" BorderThickness="0,0,0,0">
-                <userContrl:SettingsControl ></userContrl:SettingsControl>
+            <TabItem x:Name="setting" Header="Ayarlar" Padding="5" BorderThickness="0,0,0,0" Visibility="Collapsed">
+                <userControl:SettingsControl ></userControl:SettingsControl>
             </TabItem>
 
         </mah:MetroTabControl>

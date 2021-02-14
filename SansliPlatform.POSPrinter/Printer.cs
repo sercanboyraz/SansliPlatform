@@ -78,12 +78,10 @@ namespace SansliPlatform.POSPrinter
             using (var bw = new BinaryWriter(ms))
             {
                 // Reset the printer bws (NV images are not cleared)
-                bw.Write(AsciiControlChars.Escape);
-                bw.Write('@');
-                bw.Write('@');
+                //bw.Write(AsciiControlChars.Escape);
                 PrintReceipt(bw, ticketNo, "10,00", "573983-987983745-345456");
-                bw.Write("&%PC");
                 bw.Flush();
+                bw.Write("&%PC");
                 return ms.ToArray();
             }
         }
@@ -107,10 +105,8 @@ namespace SansliPlatform.POSPrinter
             bw.NormalFont(" 017701                        BAYİ 107890");
             bw.NormalFont("           " + guid);
             bw.NormalFont(" --------------------------------------------");
-            bw.FeedLines(3);
-            bw.FeedLines(1);
-            bw.FeedLines(1);
-            bw.FeedLines(1);
+            //bw.LargeText("sercan");
+            //bw.High("boyraz");
 
         }
     }

@@ -48,5 +48,14 @@ namespace SansliPlatform
                 }
             }
         }
+
+        public void isLoginTabActivated()
+        {
+            login.Visibility = Visibility.Collapsed;
+            setting.Visibility = Visibility.Visible;
+            bayii.Visibility = Visibility.Visible;
+            game.Visibility = Visibility.Visible;
+            game.IsSelected = true;
+        }
     }
 }

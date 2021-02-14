@@ -24,18 +24,32 @@ namespace SansliPlatform.UserControls
     /// </summary>
     public partial class MasterControl : System.Windows.Controls.UserControl
     {
-        private Font printFont;
-        private StreamReader streamToPrint;
+        private decimal price = 0;
         public MasterControl()
         {
             InitializeComponent();
+            totalPrice.Content = "0";
         }
 
         private void createPrintTicket_Click(object sender, RoutedEventArgs e)
         {
-            var random = new Random();
-            var randomnumber = random.Next(100000, 999999);
-            SansliPlatform.POSPrinter.Printer.GiftItems("ITherm280", randomnumber.ToString());
+            try
+            {
+                var random = new Random();
+                var randomnumber = random.Next(100000, 999999);
+                POSPrinter.Printer.GiftItems("ITherm280", randomnumber.ToString());
+                price += 15;
+                totalPrice.Content = price.ToString("#.00");
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            price = 0;
+            totalPrice.Content = price.ToString("0");
         }
     }
 }

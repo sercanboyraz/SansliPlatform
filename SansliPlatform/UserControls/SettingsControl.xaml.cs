@@ -22,6 +22,21 @@ namespace SansliPlatform.UserControls
         public SettingsControl()
         {
             InitializeComponent();
+            this.Loaded += SettingsControl_Loaded;
+        }
+
+        private void SettingsControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbButtonRight.SelectedIndex = Properties.Settings.Default.Game_Button_Right;
+        }
+
+        private void cmbButtonRight_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbButtonRight.SelectedIndex >= 0)
+            {
+                Properties.Settings.Default.Game_Button_Right = cmbButtonRight.SelectedIndex;
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
