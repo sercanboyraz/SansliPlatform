@@ -68,7 +68,6 @@ namespace SansliPlatform.UserControls
                 }
                 passwordText.Password = s;
             }
-
         }
 
         private void bayiNo_Button_Click(object sender, RoutedEventArgs e)
@@ -78,11 +77,9 @@ namespace SansliPlatform.UserControls
         }
 
         private void password_Button_Click(object sender, RoutedEventArgs e)
-        
         {
             passwordText = (PasswordBox)sender;
             textBox = null;
         }
-
     }
 }
